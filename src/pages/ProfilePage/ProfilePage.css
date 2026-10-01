@@ -9,8 +9,15 @@
   padding: 24px 16px;
 }
 
+@media (max-width: 767px) {
+  .profile-page__content {
+    padding: 16px 12px;
+  }
+}
+
 .profile-page__tab-content {
   width: 100%;
+  min-width: 0;
 }
 
 .profile-page__placeholder {

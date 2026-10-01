@@ -1,0 +1,32 @@
+.org-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.org-badges__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--fg-default);
+}
+
+.org-badges__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.org-badges__link {
+  display: inline-flex;
+}
+
+.org-badges__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.org-badges__avatar:hover {
+  opacity: 0.8;
+}

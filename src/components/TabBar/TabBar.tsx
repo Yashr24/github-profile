@@ -23,7 +23,12 @@ const TABS: TabItem[] = [
   { label: "Stars", tab: "stars", icon: <StarIcon size={16} /> },
 ];
 
-export default function TabBar() {
+interface TabBarProps {
+  /** From GitHub user API — badge on Repositories tab */
+  publicRepoCount?: number;
+}
+
+export default function TabBar({ publicRepoCount }: TabBarProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") ?? "";
 
@@ -47,6 +52,9 @@ export default function TabBar() {
             >
               <span className="tabbar__icon">{item.icon}</span>
               {item.label}
+              {item.tab === "repositories" && publicRepoCount !== undefined && (
+                <span className="tabbar__count">{publicRepoCount}</span>
+              )}
             </button>
           </li>
         ))}

@@ -1,0 +1,95 @@
+.activity-overview {
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.activity-overview__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--fg-default);
+  margin: 0 0 12px 0;
+}
+
+.activity-overview__body {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  min-height: 200px;
+}
+
+/* ── Left prose ─────────────────────────────────────────── */
+.activity-overview__prose {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--fg-muted);
+  line-height: 1.6;
+  padding-right: 24px;
+  min-width: 0;
+}
+
+.activity-overview__prose a {
+  color: var(--accent-fg);
+}
+
+.activity-overview__stats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.activity-overview__stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.activity-overview__stat-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.activity-overview__stat-label {
+  color: var(--fg-muted);
+}
+
+/* ── Right chart + vertical divider ─────────────────────── */
+.activity-overview__chart {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid var(--border);
+  padding: 8px 16px 8px 24px;
+  overflow: visible;
+}
+
+.cross-axis-chart {
+  display: block;
+  overflow: visible;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .activity-overview__body {
+    flex-direction: column;
+  }
+
+  .activity-overview__prose {
+    padding-right: 0;
+  }
+
+  .activity-overview__chart {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding: 16px 0 0;
+    width: 100%;
+  }
+}

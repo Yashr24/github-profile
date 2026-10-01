@@ -1,0 +1,29 @@
+.follow-list-container__loading {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.follow-list-container__skeleton {
+  height: 88px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: follow-shimmer 1.4s infinite;
+}
+
+@keyframes follow-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.follow-list-container__error,
+.follow-list-container__empty {
+  font-size: 14px;
+  color: var(--fg-muted);
+  padding: 24px 0;
+}

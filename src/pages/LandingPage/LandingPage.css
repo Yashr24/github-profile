@@ -83,3 +83,11 @@
 .landing__button:hover:not(:disabled) {
   background-color: #0860ca;
 }
+
+@media (max-width: 480px) {
+  .landing__card {
+    padding: 24px 16px;
+    border: none;
+    border-radius: 0;
+  }
+}

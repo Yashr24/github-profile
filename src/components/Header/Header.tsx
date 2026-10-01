@@ -2,20 +2,31 @@ import {
   ThreeBarsIcon,
   MarkGithubIcon,
   SearchIcon,
-  BellIcon,
   PlusIcon,
+  CopilotIcon,
+  IssueOpenedIcon,
+  GitPullRequestIcon,
+  ProjectIcon,
+  InboxIcon,
 } from "@primer/octicons-react";
 import TabBar from "../TabBar/TabBar";
 import "./Header.css";
 
 interface HeaderProps {
   username: string;
+  /** User avatar URL — populated once the profile API responds */
+  avatarUrl?: string;
+  /** public_repos from profile API — shown on Repositories tab */
+  publicRepoCount?: number;
 }
 
-export default function Header({ username }: HeaderProps) {
+export default function Header({
+  username,
+  avatarUrl,
+  publicRepoCount,
+}: HeaderProps) {
   return (
     <header className="header">
-      {/* ── Row 1: logo, username, search, icon cluster ── */}
       <div className="header__row1">
         <div className="header__left">
           <button className="header__icon-btn" aria-label="Open navigation menu">
@@ -27,32 +38,79 @@ export default function Header({ username }: HeaderProps) {
           <span className="header__username">{username}</span>
         </div>
 
-        <div className="header__center">
+        <div className="header__right">
           <div className="header__search">
-            <SearchIcon size={16} className="header__search-icon" />
+            <SearchIcon size={14} className="header__search-icon" />
             <span className="header__search-placeholder">
               Type <kbd>/</kbd> to search
             </span>
           </div>
-        </div>
 
-        {/* Static icon cluster — decorative, no auth in this clone */}
-        <div className="header__right">
-          <button className="header__icon-btn" aria-label="Notifications">
-            <BellIcon size={16} />
+          <button
+            className="header__icon-btn header__icon-btn--bordered header__icon-btn--split"
+            aria-label="Copilot"
+            type="button"
+          >
+            <CopilotIcon size={16} />
+            <span className="header__caret">▾</span>
           </button>
-          <button className="header__icon-btn" aria-label="Create new">
+
+          <span className="header__divider" aria-hidden="true" />
+
+          <button
+            className="header__icon-btn header__icon-btn--bordered header__icon-btn--split"
+            aria-label="Create new"
+            type="button"
+          >
             <PlusIcon size={16} />
+            <span className="header__caret">▾</span>
           </button>
-          {/* Avatar placeholder */}
-          <div className="header__avatar" aria-label="User menu">
-            <div className="header__avatar-circle" />
+          <button
+            className="header__icon-btn header__icon-btn--bordered"
+            aria-label="Issues"
+            type="button"
+          >
+            <IssueOpenedIcon size={16} />
+          </button>
+          <button
+            className="header__icon-btn header__icon-btn--bordered"
+            aria-label="Pull requests"
+            type="button"
+          >
+            <GitPullRequestIcon size={16} />
+          </button>
+          <button
+            className="header__icon-btn header__icon-btn--bordered"
+            aria-label="Projects"
+            type="button"
+          >
+            <ProjectIcon size={16} />
+          </button>
+          <button
+            className="header__icon-btn header__icon-btn--bordered"
+            aria-label="Inbox"
+            type="button"
+          >
+            <InboxIcon size={16} />
+          </button>
+
+          <div className="header__avatar-wrap" aria-label="User menu">
+            {avatarUrl ? (
+              <img
+                className="header__avatar-img"
+                src={avatarUrl}
+                alt={username}
+                width={20}
+                height={20}
+              />
+            ) : (
+              <div className="header__avatar-placeholder" />
+            )}
           </div>
         </div>
       </div>
 
-      {/* ── Row 2: tab navigation ── */}
-      <TabBar />
+      <TabBar publicRepoCount={publicRepoCount} />
     </header>
   );
 }

@@ -1,0 +1,190 @@
+.sidebar {
+  width: 296px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Avatar ─────────────────────────────────────────────── */
+.sidebar__avatar-wrap {
+  width: 100%;
+}
+
+.sidebar__avatar {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+/* ── Names ──────────────────────────────────────────────── */
+.sidebar__names {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar__name {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--fg-default);
+}
+
+.sidebar__login {
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--fg-muted);
+  line-height: 1.25;
+}
+
+/* ── Bio ────────────────────────────────────────────────── */
+.sidebar__bio {
+  font-size: 14px;
+  color: var(--fg-default);
+  line-height: 1.5;
+}
+
+/* ── Edit profile button ────────────────────────────────── */
+.sidebar__edit-btn {
+  width: 100%;
+  padding: 5px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg-default);
+  background-color: var(--canvas-subtle);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sidebar__edit-btn:hover {
+  background-color: #eaeef2;
+}
+
+/* ── Followers / Following ──────────────────────────────── */
+.sidebar__follow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--fg-default);
+  flex-wrap: wrap;
+}
+
+.sidebar__follow-icon {
+  color: var(--fg-muted);
+  flex-shrink: 0;
+}
+
+.sidebar__follow-label {
+  color: var(--fg-muted);
+}
+
+.sidebar__follow-dot {
+  color: var(--fg-muted);
+}
+
+.sidebar__follow-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.sidebar__follow-link:hover {
+  color: var(--accent-fg);
+}
+
+.sidebar__follow-link:hover .sidebar__follow-label {
+  color: var(--accent-fg);
+}
+
+/* ── Details list ───────────────────────────────────────── */
+.sidebar__details {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar__detail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--fg-default);
+  min-width: 0;
+}
+
+.sidebar__detail-icon {
+  color: var(--fg-muted);
+  flex-shrink: 0;
+}
+
+.sidebar__detail a {
+  color: var(--fg-default);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar__detail a:hover {
+  color: var(--accent-fg);
+}
+
+/* ── Achievements ───────────────────────────────────────── */
+.sidebar__achievements {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar__section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--fg-default);
+}
+
+.sidebar__achievement-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── Responsive: avatar shrinks inline with name ────────── */
+@media (max-width: 1011px) {
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .sidebar__avatar-wrap {
+    width: 48px;
+    flex-shrink: 0;
+  }
+
+  .sidebar__names {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sidebar__name {
+    font-size: 18px;
+  }
+
+  .sidebar__login {
+    font-size: 16px;
+  }
+
+  .sidebar__bio,
+  .sidebar__edit-btn,
+  .sidebar__follow,
+  .sidebar__details {
+    width: 100%;
+  }
+}

@@ -1,50 +1,102 @@
-# React + TypeScript + Vite
+# GitHub Profile Viewer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive clone of the GitHub profile page, built in **React** (the assignment specifies Angular — React was used instead and this difference is intentional).
 
-Currently, two official plugins are available:
+Live demo shows the profile for any GitHub username at `/:username`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React 18** + **TypeScript** (via Vite 5)
+- **React Router v6** — `/:username` for profile, `?tab=` for tab switching
+- **Apache ECharts** (`echarts-for-react`) — contribution heatmap calendar
+- **@primer/octicons-react** — GitHub's official icon set
+- Plain **CSS** (no Tailwind, Bootstrap, or MUI)
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Live vs Mock Data
+
+
+| Section                                                     | Source                                                  |
+| ----------------------------------------------------------- | ------------------------------------------------------- |
+| Left sidebar (avatar, name, bio, followers, location, etc.) | Live — `api.github.com/users/:username`                 |
+| Contribution heatmap                                        | Live — proxy API (see below)                            |
+| Year rail (clicking a year refetches the heatmap)           | Live — proxy API                                        |
+| Popular repositories (Overview tab)                         | Live — `api.github.com/users/:username/repos`           |
+| Repositories tab (full list + search)                       | Live — `api.github.com/users/:username/repos`           |
+| Organizations                                               | Live — `api.github.com/users/:username/orgs`            |
+| Achievements                                                | Mock — GitHub's achievement API requires authentication |
+| Activity overview                                           | Mock                                                    |
+| Contribution activity timeline                              | Mock                                                    |
+| Header icon cluster (bell, +, avatar)                       | Static — decorative only, no auth                       |
+
+
+---
+
+
+
+## Why the Heatmap Uses a Proxy
+
+GitHub's **REST API has no contributions endpoint** — the green calendar is only available through the **GraphQL API**, which requires a personal access token and cannot be called from a browser (CORS).
+
+This project uses the public proxy at `[github-contributions-api.jogruber.de](https://github-contributions-api.jogruber.de/v4/shreeramk?y=last&format=nested)` which:
+
+- Wraps the GraphQL call server-side
+- Returns `{ date, count, level }` per day with `level` pre-bucketed 0–4
+- Has CORS open and requires no authentication
+
+Switching years (clicking the year rail) calls the same proxy with `?y={year}`.
+
+---
+
+
+
+## Project Structure
+
+```
+src/
+  types/          # TypeScript interfaces (github.ts, mock.ts)
+  services/       # API calls (GithubService.ts, ContributionsService.ts)
+  utils/          # Helpers (date.ts)
+  mock/           # Static mock data (achievements.ts, activity.ts)
+  components/     # Pure UI components (props in → JSX out)
+  containers/     # Stateful components that fetch data
+  pages/          # Route-level pages (LandingPage, ProfilePage)
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+
+## Routes
+
+
+| URL                           | Page                                   |
+| ----------------------------- | -------------------------------------- |
+| `/`                           | Landing page — enter a GitHub username |
+| `/:username`                  | Profile overview                       |
+| `/:username?tab=repositories` | Full repo list with search             |
+| `/:username?tab=projects`     | Projects (empty — no public API)       |
+| `/:username?tab=packages`     | Packages (empty — no public API)       |
+| `/:username?tab=stars`        | Stars (empty — no public API)          |
+| `/:username?tab=followers`    | User Followers List                    |
+| `/:username?tab=following`    | User Following List                    |
+
+
+---
+
+
+
+## Running Locally
+
+```bash
+npm install
+npm start       # starts Vite dev server at http://localhost:5173
 ```
+
+Visit `http://localhost:5173/shreeramk` to see the reference profile.
+
+---
+

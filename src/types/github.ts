@@ -22,6 +22,12 @@ export enum RepoVisibility {
   Internal = "internal",
 }
 
+export interface RepoLicense {
+  key: string;
+  name: string;
+  spdx_id: string;
+}
+
 export interface Repository {
   id: number;
   name: string;
@@ -34,6 +40,8 @@ export interface Repository {
   stargazers_count: number;
   forks_count: number;
   pushed_at: string;
+  updated_at: string;
+  license: RepoLicense | null;
 }
 
 export interface Organization {

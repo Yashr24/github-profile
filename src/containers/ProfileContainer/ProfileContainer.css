@@ -1,0 +1,105 @@
+/* ── 3-column layout ─────────────────────────────────────── */
+.profile-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+}
+
+.profile-container__main {
+  flex: 1;
+  min-width: 0; /* prevent flex blowout */
+}
+
+.profile-container__year-rail {
+  width: 90px;
+  flex-shrink: 0;
+}
+
+/* ── Loading skeleton ────────────────────────────────────── */
+.profile-container--loading {
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.profile-container__skeleton-avatar {
+  width: 296px;
+  height: 296px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.profile-container__skeleton-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 296px;
+}
+
+.profile-container__skeleton-line {
+  height: 14px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.profile-container__skeleton-line--wide   { width: 100%; }
+.profile-container__skeleton-line--medium { width: 70%; }
+.profile-container__skeleton-line--narrow { width: 45%; }
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Error state ─────────────────────────────────────────── */
+.profile-container--error {
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 32px 0;
+}
+
+.profile-container__error-msg {
+  font-size: 16px;
+  font-weight: 500;
+  color: #cf222e;
+  max-width: 36rem;
+  line-height: 1.5;
+}
+
+.profile-container__error-link {
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* ── Responsive: sidebar moves above main ────────────────── */
+@media (max-width: 1011px) {
+  .profile-container {
+    flex-direction: column;
+  }
+
+  .profile-container__year-rail {
+    display: none; /* year rail becomes part of heatmap on narrow screens */
+  }
+
+  .profile-container--loading .profile-container__skeleton-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .profile-container--loading .profile-container__skeleton-lines {
+    width: 200px;
+  }
+}
+
+/* ── Narrow: single column ───────────────────────────────── */
+@media (max-width: 767px) {
+  .profile-container__year-rail {
+    display: none;
+  }
+}

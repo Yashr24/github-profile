@@ -1,0 +1,16 @@
+.contribution-graph {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Narrow viewports: fixed min width + scroll (GitHub mobile pattern) */
+@media (max-width: 900px) {
+  .contribution-graph {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .contribution-graph > div {
+    min-width: 820px;
+  }
+}

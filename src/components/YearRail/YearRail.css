@@ -1,0 +1,57 @@
+.year-rail {
+  width: 90px;
+  flex-shrink: 0;
+}
+
+.year-rail__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.year-rail__btn {
+  width: 100%;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: right;
+  color: var(--accent-fg);
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.year-rail__btn:hover {
+  background-color: var(--canvas-subtle);
+}
+
+.year-rail__btn--active {
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--accent-fg);
+}
+
+.year-rail__btn--active:hover {
+  background-color: #0860ca;
+}
+
+/* On narrow screens the year rail becomes a horizontal scrollable strip */
+@media (max-width: 1011px) {
+  .year-rail {
+    width: 100%;
+  }
+
+  .year-rail__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .year-rail__btn {
+    text-align: center;
+    padding: 4px 10px;
+  }
+}

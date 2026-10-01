@@ -1,0 +1,28 @@
+.achievement-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+}
+
+.achievement-badge__img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.achievement-badge__multiplier {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  font-size: 10px;
+  font-weight: 600;
+  background-color: var(--fg-default);
+  color: #fff;
+  border-radius: 2em;
+  padding: 0 4px;
+  line-height: 16px;
+}

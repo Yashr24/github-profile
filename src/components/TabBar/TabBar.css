@@ -1,16 +1,25 @@
 .tabbar {
   border-bottom: 1px solid var(--border);
+  background-color: var(--canvas-subtle);
 }
 
 .tabbar__list {
   display: flex;
   list-style: none;
   gap: 0;
-  padding: 0 16px;
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+  width: 100%;
   overflow-x: auto;
   scrollbar-width: none; /* Firefox */
+}
+
+@media (max-width: 767px) {
+  .tabbar__list {
+    padding: 0 12px;
+  }
 }
 
 .tabbar__list::-webkit-scrollbar {
@@ -39,7 +48,7 @@
 
 .tabbar__button:hover {
   border-bottom-color: var(--border);
-  background-color: var(--canvas-subtle);
+  background-color: rgba(0, 0, 0, 0.04);
   border-radius: 6px 6px 0 0;
 }
 
@@ -57,4 +66,23 @@
   display: flex;
   align-items: center;
   color: var(--fg-muted);
+}
+
+.tabbar__count {
+  margin-left: 2px;
+  padding: 0 7px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--fg-default);
+  background-color: rgba(175, 184, 193, 0.2);
+  border-radius: 999px;
+}
+
+@media (max-width: 480px) {
+  .tabbar__button {
+    padding: 8px 10px;
+    font-size: 13px;
+    gap: 4px;
+  }
 }

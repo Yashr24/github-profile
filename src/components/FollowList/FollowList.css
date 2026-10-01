@@ -1,0 +1,17 @@
+.follow-list {
+  width: 100%;
+}
+
+.follow-list__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--fg-default);
+  margin: 0 0 8px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.follow-list__items {
+  display: flex;
+  flex-direction: column;
+}

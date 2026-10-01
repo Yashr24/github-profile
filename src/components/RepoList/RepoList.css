@@ -1,0 +1,49 @@
+.repo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Search bar ─────────────────────────────────────────── */
+.repo-list__search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 12px;
+  background: #fff;
+}
+
+.repo-list__search-icon {
+  color: var(--fg-muted);
+  flex-shrink: 0;
+}
+
+.repo-list__search {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--fg-default);
+  font-family: inherit;
+  background: transparent;
+}
+
+.repo-list__search::placeholder {
+  color: var(--fg-muted);
+}
+
+/* ── Empty state ────────────────────────────────────────── */
+.repo-list__empty {
+  font-size: 14px;
+  color: var(--fg-muted);
+  padding: 24px 0;
+  text-align: center;
+}
+
+/* ── Item list ──────────────────────────────────────────── */
+.repo-list__items {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,73 +1,85 @@
 .header {
-  background-color: #24292f;
-  color: #fff;
+  background-color: var(--canvas-subtle);
   position: sticky;
   top: 0;
   z-index: 100;
   width: 100%;
 }
 
-/* ── Row 1 ──────────────────────────────────────────────── */
+/* ── Row 1: full viewport width, content at edges ─────── */
 .header__row1 {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 16px;
-  padding: 12px 16px;
   max-width: 1280px;
   margin: 0 auto;
+  width: 100%;
+  padding: 12px 16px;
+  box-sizing: border-box;
 }
 
+/* ── Far-left cluster ───────────────────────────────────── */
 .header__left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   flex-shrink: 0;
+  min-width: 0;
 }
 
 .header__logo {
-  color: #fff;
+  color: var(--fg-default);
   display: flex;
   align-items: center;
 }
 
 .header__logo:hover {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--fg-muted);
   text-decoration: none;
 }
 
 .header__username {
   font-size: 14px;
   font-weight: 600;
-  color: #fff;
+  color: var(--fg-default);
+  white-space: nowrap;
 }
 
-/* ── Search ─────────────────────────────────────────────── */
-.header__center {
-  flex: 1;
-  max-width: 480px;
+/* ── Right: search + icons (pushed to the right edge) ─── */
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .header__search {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  gap: 6px;
+  background-color: #fff;
+  border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 5px 12px;
+  padding: 5px 10px;
   cursor: text;
-  width: 100%;
+  width: 220px;
+  margin-right: 4px;
 }
 
 .header__search-icon {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--fg-muted);
   flex-shrink: 0;
 }
 
 .header__search-placeholder {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  color: var(--fg-muted);
   flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header__search-placeholder kbd {
@@ -75,91 +87,107 @@
   padding: 1px 5px;
   font-size: 11px;
   font-family: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--border);
   border-radius: 4px;
-  color: rgba(255, 255, 255, 0.5);
-  background: transparent;
+  color: var(--fg-muted);
+  background: var(--canvas-subtle);
 }
 
-/* ── Right icon cluster ─────────────────────────────────── */
-.header__right {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-left: auto;
+.header__divider {
+  width: 1px;
+  height: 24px;
+  background-color: var(--border);
   flex-shrink: 0;
+  margin: 0 2px;
 }
 
 .header__icon-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 2px;
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--fg-default);
   cursor: pointer;
-  padding: 6px;
+  padding: 6px 8px;
   border-radius: 6px;
+  font-size: 13px;
+}
+
+.header__icon-btn--bordered {
+  background-color: #fff;
+  border: 1px solid var(--border);
+  padding: 5px 7px;
+}
+
+.header__icon-btn--split {
+  padding-right: 4px;
+  gap: 0;
 }
 
 .header__icon-btn:hover {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
-.header__avatar {
+.header__icon-btn--bordered:hover {
+  background-color: var(--canvas-subtle);
+}
+
+.header__caret {
+  font-size: 10px;
+  color: var(--fg-muted);
+  margin-left: 2px;
+  line-height: 1;
+}
+
+/* ── User avatar ────────────────────────────────────────── */
+.header__avatar-wrap {
   cursor: pointer;
   padding: 2px;
+  margin-left: 2px;
+  display: flex;
+  align-items: center;
 }
 
-.header__avatar-circle {
+.header__avatar-img {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--border);
+  display: block;
 }
 
-/* ── Tab bar row overrides for dark header background ───── */
-.header .tabbar {
-  background-color: #24292f;
-  border-bottom-color: rgba(255, 255, 255, 0.15);
-}
-
-.header .tabbar__button {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.header .tabbar__button:hover {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.08);
-  border-bottom-color: rgba(255, 255, 255, 0.3);
-}
-
-.header .tabbar__button--active {
-  color: #fff;
-  border-bottom-color: var(--underline-active);
-}
-
-.header .tabbar__button--active:hover {
-  border-bottom-color: var(--underline-active);
-}
-
-.header .tabbar__icon {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.header .tabbar__button--active .tabbar__icon {
-  color: rgba(255, 255, 255, 0.8);
+.header__avatar-placeholder {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid var(--border);
 }
 
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 767px) {
-  .header__center {
-    display: none;
+  .header__row1 {
+    padding: 12px;
   }
 
+  .header__search {
+    display: none;
+  }
   .header__username {
     display: none;
+  }
+  .header__icon-btn--bordered:not(.header__icon-btn--split) {
+    display: none;
+  }
+  .header__divider {
+    display: none;
+  }
+}
+
+@media (max-width: 1011px) {
+  .header__search {
+    width: 160px;
   }
 }

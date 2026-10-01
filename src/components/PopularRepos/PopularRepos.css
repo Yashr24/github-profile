@@ -1,0 +1,47 @@
+.popular-repos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* ── Section header ─────────────────────────────────────── */
+.popular-repos__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popular-repos__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--fg-default);
+}
+
+.popular-repos__customize {
+  font-size: 12px;
+  color: var(--accent-fg);
+}
+
+/* ── 2-column card grid ─────────────────────────────────── */
+.popular-repos__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 16px;
+}
+
+/* ── Loading skeletons ──────────────────────────────────── */
+.popular-repos__skeleton {
+  height: 110px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
